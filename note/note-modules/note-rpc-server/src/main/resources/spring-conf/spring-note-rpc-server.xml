@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-4.2.xsd	
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:dubbo.properties,classpath:config.properties" />
+	    <import resource="classpath:/spring-conf/spring-mybatis.xml" />
+	<!-- 自动扫描的包名 -->
+	<context:component-scan base-package="com.me.note"></context:component-scan>
+	<dubbo:application name="redstar-rpc-server" owner="redstar" />
+	<dubbo:registry address="zookeeper://127.0.0.1:2181" />
+
+
+	<dubbo:protocol  port="8990"/>
+	
+	<bean id="iProductService" class="com.me.note.service.ProductService" />
+   	<dubbo:service interface="com.me.note.rpc.thrift.service.IProductService$Iface"
+		ref="iProductService" version="1.0.1" timeout="10000" >
+	</dubbo:service>	
+
+
+
+
+</beans>

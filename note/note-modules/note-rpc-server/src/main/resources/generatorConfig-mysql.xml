@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>	
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry
+		location="D:/maven/repository/mysql/mysql-connector-java/5.1.38/mysql-connector-java-5.1.38.jar" />
+	<context id="prod" targetRuntime="MyBatis3" defaultModelType="flat">
+		<!-- RowBounds pagination -->
+		<!-- <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" /> <plugin 
+			type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" /> <plugin 
+			type="org.mybatis.generator.plugins.SerializablePlugin" /> -->
+		<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+			<!-- <property name="mappers" value="tk.mybatis.mapper.common.Mapper,tk.mybatis.mapper.hsqldb.HsqldbMapper"/> -->
+			<property name="mappers" value="tk.mybatis.mapper.common.Mapper" />
+			<!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+			<property name="caseSensitive" value="true" />
+		</plugin>
+
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- jdbc连接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/test" userId="root"
+			password="xiao123" />
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="true" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.me.note.dao.entity"
+			targetProject="src/main/java">
+			<!-- 是否针对string类型的字段在set的时候进行trim调用 -->
+			<property name="trimStrings" value="true" />
+			<property name="enableSubPackages" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="mapperXml"
+			targetProject="src/main/java" />
+		<javaClientGenerator targetPackage="com.me.note.dao.mapper"
+			targetProject="src/main/java" type="XMLMAPPER">
+			<!-- <property name="rootInterface" value="com.zhidian.util.dao.BaseDaoMybatisWithCache" 
+				/> -->
+		</javaClientGenerator>
+
+		<table tableName="users" domainObjectName="Users"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+
+			<!-- 自增长主键 -->
+			<!-- <generatedKey column="id" sqlStatement="JDBC"/> -->
+		</table>
+		<table tableName="notes" domainObjectName="Notes"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+
+		<!-- <table tableName="mobile_after_sales_modify" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"/> <table tableName="mobile_after_sales_progress" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"/> <table tableName="mobile_after_sales_replace_detail" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"/> <table tableName="mobile_after_sales_replace_modify" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+	</context>
+</generatorConfiguration>
