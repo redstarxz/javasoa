@@ -7,7 +7,6 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>note-modules</module>
-		<module>note-domain</module>
 	</modules>
 
 
