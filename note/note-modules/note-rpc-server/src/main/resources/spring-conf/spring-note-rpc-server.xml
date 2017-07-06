@@ -16,9 +16,9 @@
 
 
 	<dubbo:protocol  port="8990"/>
-	
+	<dubbo:monitor protocol="registry" />
 	<bean id="iProductService" class="com.me.note.service.ProductService" />
-   	<dubbo:service interface="com.me.note.rpc.thrift.service.IProductService$Iface"
+   	<dubbo:service interface="com.me.note.rpc.service.IProductService"
 		ref="iProductService" version="1.0.1" timeout="10000" >
 	</dubbo:service>	
 

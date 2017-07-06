@@ -12,11 +12,11 @@ public class Batparam implements Serializable  {
 
 	private static final long serialVersionUID = 1L;
 	
-	@ApiModelProperty("产品类型：0自签产品 1两方协议产品")
+	@ApiModelProperty("xxxx")
 	private int productType;
 
-	@ApiModelProperty("SRM供应商编号")
-	@NotBlank(message="SRM供应商编号不能为空!")
+	@ApiModelProperty("wwww")
+	@NotBlank(message="sssss")
 	private String supplierCode;
 	
 

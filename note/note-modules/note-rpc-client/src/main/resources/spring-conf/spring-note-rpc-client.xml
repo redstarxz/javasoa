@@ -13,9 +13,10 @@
 	<dubbo:application name="note-rpc-client" owner="redstar" />
 
 	<dubbo:registry address="zookeeper://127.0.0.1:2181" />
+		<dubbo:monitor protocol="registry" />
 	
 	<dubbo:reference id="iProductService"
-		interface="com.me.note.rpc.thrift.service.IProductService$Iface"
+		interface="com.me.note.rpc.service.IProductService"
 		version="1.0.1" timeout="10000" >
 	</dubbo:reference>
 	<!-- 自动扫描的包名 -->

@@ -34,13 +34,13 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         Contact contact = new Contact("test", "sdfsfds", "xxx");
-        return new ApiInfo("API接口",//大标题 title
-                "API接口",//小标题
-                "0.0.1",//版本
-                "www",//termsOfServiceUrl
-                contact,//作者
-                "Note",//链接显示文字
-                "https://"//网站链接
+        return new ApiInfo("API",
+                "API",
+                "0.0.1",
+                "www",
+                contact,
+                "Note",
+                "https://"
         );
     }
 }

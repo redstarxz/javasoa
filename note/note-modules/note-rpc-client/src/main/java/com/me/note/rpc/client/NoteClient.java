@@ -8,14 +8,14 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
-import com.me.note.rpc.thrift.inout.NoteDetailReqeust;
-import com.me.note.rpc.thrift.inout.NoteDetailResponse;
-import com.me.note.rpc.thrift.service.IProductService;
+import com.me.note.rpc.inout.NoteDetailReqeust;
+import com.me.note.rpc.inout.NoteDetailResponse;
+import com.me.note.rpc.service.IProductService;
 
 @Service
 public class NoteClient {
 	@Resource
-	IProductService.Iface iProductService;
+	IProductService iProductService;
 
 	public String getNote() throws TException {
 		// AbstractApplicationContext ctx=new
@@ -30,6 +30,6 @@ public class NoteClient {
 			System.out.println("aaaa");
 		}
 		NoteDetailResponse rs = iProductService.getProduct(rq);
-		return rs.title;
+		return rs.getTitle();
 	}
 }
