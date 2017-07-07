@@ -27,6 +27,21 @@
 			<AppenderRef ref="RollingFile" />
 			<AppenderRef ref="STDOUT" />
 		</Root>
+		<logger name="druid.sql">
+			<level value="DEBUG" />
+		</logger>
+		<logger name="druid.sql.DataSource">
+			<level value="DEBUG" />
+		</logger>
+		<logger name="druid.sql.Connection">
+			<level value="DEBUG" />
+		</logger>
+		<logger name="druid.sql.Statement">
+			<level value="DEBUG" />
+		</logger>
+		<logger name="druid.sql.ResultSet">
+			<level value="DEBUG" />
+		</logger>
 	</Loggers>
 
 </Configuration>

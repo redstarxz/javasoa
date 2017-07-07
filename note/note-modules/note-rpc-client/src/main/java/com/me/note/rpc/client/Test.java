@@ -55,7 +55,7 @@ public class Test {
 class Child implements Callable<String> {
 	public String call() throws Exception {
 		String s = "";
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 100; i++) {
 			NoteDetailReqeust rq = new NoteDetailReqeust(1);
 			NoteDetailResponse rs = Test.service.getProduct(rq);
 			s += rs.getTitle();
