@@ -1,5 +1,11 @@
 package com.me.note.rpc.client;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,22 +20,47 @@ public class Test {
 		AbstractApplicationContext ctx = new ClassPathXmlApplicationContext(
 				"classpath:spring-conf/spring-note-rpc-client.xml");
 		service = (IProductService) ctx.getBean("iProductService");
-		for (int i = 0; i < 10; i++) {
-			new Thread(new Child()).start();
-			
+		
+		
+		ExecutorService exe = Executors.newFixedThreadPool(10);
+		// 构建完成服务
+		ExecutorCompletionService<String> completionService = new ExecutorCompletionService<String>(exe);
+
+		for (int i = 0; i < 50; i++) {
+			completionService.submit(new Child());
 		}
+
+		for (int i = 0; i < 50; i++) {
+			try {
+				String y = completionService.take().get();
+				System.out.println(y);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		System.out.println("All threads Done!");
+		exe.shutdown();
+
 	}
 
 	public static IProductService service;
 
 }
 
-class Child implements Runnable {
-	public void run() {
-		for (int i = 0; i < 100; i++) {
+class Child implements Callable<String> {
+	public String call() throws Exception {
+		String s = "";
+		for (int i = 0; i < 10; i++) {
 			NoteDetailReqeust rq = new NoteDetailReqeust(1);
 			NoteDetailResponse rs = Test.service.getProduct(rq);
-			System.out.println(rs.getTitle());
+			s += rs.getTitle();
 		}
+		return s;
+
 	}
 }
